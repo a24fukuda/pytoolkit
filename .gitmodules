@@ -1,6 +1,3 @@
 [submodule "async-worker"]
 	path = async-worker
 	url = git@github.com:a24fukuda/pytoolkit-async-worker.git
-[submodule "meta2package"]
-	path = meta2package
-	url = git@github.com:a24fukuda/pytoolkit-meta2package.git
