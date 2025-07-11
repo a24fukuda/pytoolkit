@@ -4,3 +4,6 @@
 [submodule "template"]
 	path = template
 	url = git@github.com:a24fukuda/pytoolkit-template.git
+[submodule "metadata"]
+	path = metadata
+	url = git@github.com:a24fukuda/pytoolkit-metadata.git
