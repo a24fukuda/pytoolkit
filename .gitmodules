@@ -7,3 +7,6 @@
 [submodule "metadata"]
 	path = metadata
 	url = git@github.com:a24fukuda/pytoolkit-metadata.git
+[submodule "result"]
+	path = result
+	url = git@github.com:a24fukuda/pytoolkit-result.git
