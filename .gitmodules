@@ -10,3 +10,6 @@
 [submodule "result"]
 	path = result
 	url = git@github.com:a24fukuda/pytoolkit-result.git
+[submodule "option"]
+	path = option
+	url = git@github.com:a24fukuda/pytoolkit-option.git
