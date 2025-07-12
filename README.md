@@ -11,10 +11,10 @@ vYYYY.MM.DD.XX
 ```
 
 - `v`: 固定の接頭辞
-- `YYYY`: 年（4桁）
-- `MM`: 月（2桁、01-12）
-- `DD`: 日（2桁、01-31）
-- `XX`: 同日中の更新番号（2桁、01から開始）
+- `YYYY`: 年（4 桁）
+- `MM`: 月（2 桁、01-12）
+- `DD`: 日（2 桁、01-31）
+- `XX`: 同日中の更新番号（2 桁、01 から開始）
 
 ### バージョン番号の例
 
@@ -28,36 +28,58 @@ v2025.07.13.01  # 2025年7月13日の最初のリリース
 
 ```bash
 # 新しいバージョンタグを作成
-git tag -a v2025.07.12.01 -m "機能追加: Option型の実装"
+git tag v2025.07.12.01
 git push origin v2025.07.12.01
 
 # 同日中の2回目の更新
-git tag -a v2025.07.12.02 -m "バグ修正: Result型のエラーハンドリング"
+git tag v2025.07.12.02
 git push origin v2025.07.12.02
+```
+
+### サブモジュールのバージョン更新手順
+
+`result` サブモジュールの例
+
+```bash
+cd ../result
+# pyproject.toml の version を更新
+uv sync
+git add .
+git commit -m "バージョンを更新"
+git tag v2025.07.12.01
+git push origin main
+git push origin v2025.07.12.01
+
+# メインプロジェクトに戻る
+cd ..
 ```
 
 ## インストール方法
 
-### GitHubから直接インストール
+### GitHub から直接インストール
 
-#### 最新版（mainブランチ）
+#### 最新版（main ブランチ）
+
 ```bash
 pip install git+https://github.com/username/pytoolkit.git
 ```
 
 #### 特定のブランチを指定
+
 ```bash
 pip install git+https://github.com/username/pytoolkit.git@develop
 pip install git+https://github.com/username/pytoolkit.git@feature-branch
 ```
 
 #### 特定のタグを指定
+
 ```bash
 pip install git+https://github.com/username/pytoolkit.git@v1.0.0
 pip install git+https://github.com/username/pytoolkit.git@v2.1.0
 ```
 
-#### uvを使用する場合
+#### uv を使用する場合
+
 ```bash
 uv add git+https://github.com/username/pytoolkit.git
 uv add git+https://github.com/username/pytoolkit.git@develop
@@ -65,24 +87,28 @@ uv add git+https://github.com/username/pytoolkit.git@v1.0.0
 ```
 
 ### 注意事項
+
 - プライベートリポジトリの場合は、適切な認証が必要です
-- SSHキーが設定されている場合は、`git+ssh://` を使用することも可能です
-- リポジトリのURLは実際のものに置き換えてください
+- SSH キーが設定されている場合は、`git+ssh://` を使用することも可能です
+- リポジトリの URL は実際のものに置き換えてください
 
 ## サブモジュールの管理
 
 ### サブモジュールの追加
+
 ```bash
 git submodule add <リポジトリURL> <サブモジュール名>
 ```
 
 例：
+
 ```bash
 git submodule add https://github.com/username/async-worker.git async-worker
 git submodule add https://github.com/username/meta2package.git meta2package
 ```
 
 ### サブモジュールの確認
+
 ```bash
 # サブモジュールの状態確認
 git submodule status
@@ -95,6 +121,7 @@ cat .gitmodules
 ```
 
 ### サブモジュールの更新
+
 ```bash
 # 特定のサブモジュールを更新
 git submodule update --remote <サブモジュール名>
@@ -107,6 +134,7 @@ git submodule update --init --recursive
 ```
 
 ### サブモジュールの削除
+
 ```bash
 # サブモジュールの削除（段階的に実行）
 git submodule deinit <サブモジュール名>
@@ -115,6 +143,7 @@ rm -rf .git/modules/<サブモジュール名>
 ```
 
 例：
+
 ```bash
 git submodule deinit async-worker
 git rm async-worker
@@ -122,6 +151,7 @@ rm -rf .git/modules/async-worker
 ```
 
 ### クローン時のサブモジュール取得
+
 ```bash
 # サブモジュールを含めてクローン
 git clone --recurse-submodules <リポジトリURL>
@@ -133,6 +163,7 @@ git submodule update --init --recursive
 ## タグの管理
 
 ### タグの追加
+
 ```bash
 # 軽量タグ（タグ名のみ）
 git tag <タグ名>
@@ -145,6 +176,7 @@ git tag -a <タグ名> <コミットハッシュ> -m "タグの説明"
 ```
 
 例：
+
 ```bash
 git tag -a v1.0.0 -m "Initial release"
 git tag -a v1.1.0 -m "Bug fixes and improvements"
@@ -152,6 +184,7 @@ git tag -a v2.0.0 879ce3a -m "Major update with breaking changes"
 ```
 
 ### タグの確認
+
 ```bash
 # 全てのタグを表示
 git tag
@@ -174,6 +207,7 @@ git ls-remote --tags origin | awk '{print $2}' | sed 's/refs\/tags\///' | sort
 ```
 
 ### タグのリモートへの送信
+
 ```bash
 # 特定のタグを送信
 git push origin <タグ名>
@@ -186,6 +220,7 @@ git push origin --follow-tags
 ```
 
 ### タグの削除
+
 ```bash
 # ローカルのタグを削除
 git tag -d <タグ名>
@@ -198,6 +233,7 @@ git push origin :<タグ名>
 ```
 
 例：
+
 ```bash
 # ローカルとリモートの両方からタグを削除
 git tag -d v1.0.0
