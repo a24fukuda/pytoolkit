@@ -1,6 +1,3 @@
-[submodule "async-worker"]
-	path = async-worker
-	url = git@github.com:a24fukuda/pytoolkit-async-worker.git
 [submodule "template"]
 	path = template
 	url = git@github.com:a24fukuda/pytoolkit-template.git
